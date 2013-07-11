@@ -4,8 +4,13 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: {%= ENV['RAILS5K_DEV_DATABASE']
+  username: {%= ENV['RAILS5K_DEV_USERNAME']
+  password: {%= ENV['RAILS5K_DEV_PASSWORD']
+  host: {%= ENV['RAILS5K_DEV_HOST']
+  port: {%= ENV['RAILS5K_DEV_PORT']
   pool: 5
   timeout: 5000
 
