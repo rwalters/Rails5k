@@ -1,0 +1,6 @@
+    <div>
+      <ul class="nav nav-pills pull-right">
+        <li {{bindAttr class="isEditing::active"}}><a href='#' {{action "acceptChanges"}}>{{#if isEditing}}Save{{else}}Read{{/if}}</a></li>
+        <li {{bindAttr class="isEditing:active"}}><a href='#' {{action "editStory"}}>Edit</a></li>
+      </ul>
+    </div>

@@ -1,0 +1,7 @@
+    <p><h4>Title</h4>{{view Ember.TextField valueBinding="title" placeholder="Dandelion Wine" class="span4"}}</p>
+    <p><h4>Author</h4>{{view Ember.TextField valueBinding="author" placeholder="Ray Bradbury" class="span4"}}</p>
+    <p><h4>Story</h4>
+      <small class="muted">We use Markdown. <a href="http://daringfireball.net/projects/markdown/basics">Click to find out more</a>.</small>
+      <br>
+      {{view Ember.TextArea rows="20" valueBinding="body" placeholder="*It was a quiet morning*, the town covered over with darkness and at ease in bed." class="span10" maxlength=5000}}
+    </p>

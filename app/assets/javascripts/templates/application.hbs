@@ -1,0 +1,13 @@
+<div class='navbar navbar-fixed-top'>
+  <div class="navbar-inner">
+    {{#linkTo 'index' classNames='brand'}}Write5K{{/linkTo}}
+    <ul class="nav">
+      <li>{{#linkTo 'stories'}}Story List{{/linkTo}}</li>
+      <li>{{#linkTo 'createStory'}}New Story{{/linkTo}}</li>
+    </ul>
+  </div>
+</div>
+
+    {{outlet}}
+    <hr>
+    <center><em class="muted">Created by Ray</em></center>

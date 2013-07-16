@@ -1,0 +1,13 @@
+    {{partial "story/header_nav"}}
+
+    <div id="read-pane">
+      {{#if isEditing}}
+        {{partial "story/editing"}}
+      {{else}}
+        {{partial "story/reading"}}
+      {{/if}}
+
+      <hr>
+
+      {{partial "story/footer_nav"}}
+    </div>

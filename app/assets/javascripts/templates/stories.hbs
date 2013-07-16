@@ -1,0 +1,19 @@
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <table class="table">
+            <thead>
+              <tr><th>Recent Posts</th></tr>
+            </thead>
+            {{#each controller}}
+            <tr><td>
+                {{#linkTo 'story' this}}{{title}}{{/linkTo}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="span10">
+          {{outlet}}
+        </div>
+      </div>
+    </div>

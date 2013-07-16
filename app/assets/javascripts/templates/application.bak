@@ -1,0 +1,123 @@
+  <script type="text/x-handlebars">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Write5K</a>
+        <ul class="nav">
+          <li>{{#linkTo 'stories'}}Story List{{/linkTo}}</li>
+          <li>{{#linkTo 'createStory'}}New Story{{/linkTo}}</li>
+        </ul>
+      </div>
+    </div>
+
+    {{outlet}}
+    <hr>
+    <center><em class="muted">Created by Ray</em></center>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="stories">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <table class="table">
+            <thead>
+              <tr><th>Recent Posts</th></tr>
+            </thead>
+            {{#each controller.content}}
+            <tr><td>
+                {{#linkTo 'story' this}}{{title}}{{/linkTo}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="span10">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <div>
+      <center><h1 class="muted">Write and be merry!</h1></center>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="stories/index">
+    <p class="text-warning">Please select a story</p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story">
+    {{partial "story/header_nav"}}
+
+    <div id="read-pane">
+      {{#if isEditing}}
+        {{partial "story/editing"}}
+      {{else}}
+        {{partial "story/reading"}}
+      {{/if}}
+
+      <hr>
+
+      {{partial "story/footer_nav"}}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/_header_nav">
+    <div>
+      <ul class="nav nav-pills pull-right">
+        <li {{bindAttr class="isEditing::active"}}><a href='#' {{action "acceptChanges"}}>Read</a></li>
+        <li {{bindAttr class="isEditing:active"}}><a href='#' {{action "editStory"}}>Edit</a></li>
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/_footer_nav">
+    <div class="span5 pull-left">
+      <ul class="nav nav-list">
+        {{#each story in story.prequels}}
+        {{partial "story/links"}}
+        {{/each}}
+        <li><a href="#">< Create Prequel</a></li>
+      </ul>
+    </div>
+    <div class="span5 pull-right">
+      <ul class="nav nav-list text-right">
+        {{#each story in story.sequels}}
+        {{partial "story/links"}}
+        {{/each}}
+        <li><a href="#">Create Sequel ></a></li>
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/_reading">
+      <h1>{{title}}</h1>
+      <em class="muted">by {{author}}</em>
+
+      <hr>
+
+      <div class="below-the-fold">
+        {{markdown body}}
+      </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/_editing">
+    <p><h4>Title</h4>{{view Ember.TextField valueBinding="title" placeholder="Dandelion Wine" class="span4"}}</p>
+    <p><h4>Author</h4>{{view Ember.TextField valueBinding="author" placeholder="Ray Bradbury" class="span4"}}</p>
+    <p><h4>Story</h4>
+      <small class="muted">We use Markdown. <a href="http://daringfireball.net/projects/markdown/basics">Click to find out more</a>.</small>
+      <br>
+      {{view Ember.TextArea rows="20" valueBinding="body" placeholder="*It was a quiet morning*, the town covered over with darkness and at ease in bed." class="span10" maxlength=5000}}
+    </p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/_links">
+    <li>{{#linkTo 'story' story}}{{story.title}}{{/linkTo}}</li>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="create_story">
+    <form {{action save on='submit'}}>
+      {{partial 'story/editing'}}
+      <button class="btn" type="submit">Save</button>
+    </form>
+  </script>
