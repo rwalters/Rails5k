@@ -9,5 +9,5 @@ App.CreateStoryController = Ember.ObjectController.extend
       author: @get('author')
       body: @get('body')
 
-    story.commit
-    @transitionToRoute('story', story)
+    story.save().then =>
+      @transitionToRoute('story', story)
