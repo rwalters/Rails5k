@@ -24,6 +24,22 @@ development:
   host: <%= ENV['RAILS5K_DEV_HOST'] %>
   post: <%= ENV['RAILS5K_DEV_PORT'] %>
 
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: Rails5k_test
+  pool: 5
+  username: Rails5k
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: Rails5k_production
+  pool: 5
+  username: Rails5k
+  password:
+
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
